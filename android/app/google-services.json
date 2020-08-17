@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "186058393966",
+    "firebase_url": "https://hotel-connect-d819c.firebaseio.com",
+    "project_id": "hotel-connect-d819c",
+    "storage_bucket": "hotel-connect-d819c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186058393966:android:43bedc98ba9f641992597f",
+        "android_client_info": {
+          "package_name": "com.tipan.hotel_connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186058393966-q135ego271j5nl44vk60khdf2b5s6s1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDj465J_PnL4LIZlocUqtWehkerX_6CAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186058393966-q135ego271j5nl44vk60khdf2b5s6s1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
