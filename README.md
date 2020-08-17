@@ -1,16 +1,13 @@
 # hotel_connect
 
-A new Flutter project.
+A Flutter project.
 
-## Getting Started
+## Overview
 
-This project is a starting point for a Flutter application.
+This project is intended to implement ordering of food, drinks, dessert and etc in hotels around Kampala and the near by subburbs.
 
-A few resources to get you started if this is your first Flutter project:
+## Team
+This is the effort of two individuals:
+Stephen Tipa Augustine
+and Tushira Latefa Shibah
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
