@@ -19,6 +19,9 @@ class _RegisterState extends State<Register> {
   String pwd = '';
   String pwdConfirm = '';
   String usrName = '';
+  String firstName = '';
+  String lastName = '';
+  String contact = '';
   bool loading = false;
   final _formKey = GlobalKey<FormState>();
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
@@ -32,19 +35,6 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    final loginButon = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color: Color(0xff01A0C7),
-      child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-        onPressed: () => Navigator.pop(context),
-        child: Text("Login",
-            textAlign: TextAlign.center,
-            style: style.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
-      ),
-    );
     final registerButon = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
@@ -59,7 +49,12 @@ class _RegisterState extends State<Register> {
                     loading = true;
                   });
                   dynamic result = _authServices.registerWithEmailAndPassword(
-                      this.email, this.pwd);
+                    email: this.email,
+                    userName: this.usrName,
+                    firstName: this.firstName,
+                    lastName: this.lastName,
+                    contact: this.contact,
+                  );
                   if (result == null) {
                     setState(() {
                       loading = false;
@@ -75,33 +70,48 @@ class _RegisterState extends State<Register> {
                 color: Colors.white, fontWeight: FontWeight.bold)),
       ),
     );
+    final firstNameField = TextFormField(
+      validator: (value) => value.isEmpty ? "Enter Your First Name" : null,
+      onChanged: (value) => setState(() => this.firstName = value),
+      obscureText: false,
+      style: style,
+      textAlign: TextAlign.center,
+      decoration: textInputDecoration.copyWith(hintText: "First Name"),
+    );
+    final lastNameField = TextFormField(
+      validator: (value) => value.isEmpty ? "Enter Your Last Name" : null,
+      onChanged: (value) => setState(() => this.lastName = value),
+      obscureText: false,
+      style: style,
+      textAlign: TextAlign.center,
+      decoration: textInputDecoration.copyWith(hintText: "Last Name"),
+    );
+    final contactField = TextFormField(
+      validator: (value) => value.isEmpty ? "Enter Your Mobile Number" : null,
+      onChanged: (value) => setState(() => this.contact = value),
+      obscureText: false,
+      style: style,
+      textAlign: TextAlign.center,
+      decoration: textInputDecoration.copyWith(hintText: "+256 756..."),
+    );
     final emailField = TextFormField(
       validator: (value) => value.isEmpty ? "Enter an email" : null,
       onChanged: (value) => setState(() => this.email = value),
       obscureText: false,
       style: style,
       textAlign: TextAlign.center,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Enter Email",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+      decoration: textInputDecoration.copyWith(hintText: "Valid Email"),
     );
     final userNameField = TextFormField(
-      validator: (value) =>
-          (value.isEmpty || value.contains(new RegExp(r'\\s+')))
-              ? "Enter a unique username"
-              : null,
-      onChanged: (value) => setState(() => this.usrName = value),
-      obscureText: false,
-      style: style,
-      textAlign: TextAlign.center,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Enter Username",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-    );
+        validator: (value) =>
+            (value.isEmpty || value.contains(new RegExp(r'\\s+')))
+                ? "Enter a unique username"
+                : null,
+        onChanged: (value) => setState(() => this.usrName = value),
+        obscureText: false,
+        style: style,
+        textAlign: TextAlign.center,
+        decoration: textInputDecoration.copyWith(hintText: "Unique Username"));
     final passwordField1 = TextFormField(
       validator: (value) => (value.isEmpty || value.length < 6)
           ? "Enter a password 6+ characters long"
@@ -110,11 +120,7 @@ class _RegisterState extends State<Register> {
       obscureText: true,
       style: style,
       textAlign: TextAlign.center,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Enter Password",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+      decoration: textInputDecoration.copyWith(hintText: "Enter Password"),
     );
     final passwordField2 = TextFormField(
       validator: (value) =>
@@ -123,11 +129,7 @@ class _RegisterState extends State<Register> {
       obscureText: true,
       style: style,
       textAlign: TextAlign.center,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Confirm Password",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+      decoration: textInputDecoration.copyWith(hintText: "Confirm Password"),
     );
 
     return loading
@@ -135,7 +137,7 @@ class _RegisterState extends State<Register> {
         : Scaffold(
             backgroundColor: Colors.brown[100],
             appBar: AppBar(
-              backgroundColor: Colors.brown[400],
+              backgroundColor: Colors.redAccent,
               elevation: 0.0,
               title: Text('Register'),
               actions: <Widget>[
@@ -149,6 +151,16 @@ class _RegisterState extends State<Register> {
             body: SingleChildScrollView(
               child: Center(
                 child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromRGBO(1, 89, 99, 1.0),
+                        Colors.redAccent[100]
+                      ],
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.topRight,
+                    ),
+                  ),
                   padding:
                       EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                   child: Form(
@@ -163,9 +175,15 @@ class _RegisterState extends State<Register> {
                             ),
                           ),
                           SizedBox(height: 10.0),
+                          firstNameField,
+                          SizedBox(height: 10.0),
+                          lastNameField,
+                          SizedBox(height: 10.0),
                           userNameField,
                           SizedBox(height: 10.0),
                           emailField,
+                          SizedBox(height: 10.0),
+                          contactField,
                           SizedBox(height: 10.0),
                           passwordField1,
                           SizedBox(height: 10.0),

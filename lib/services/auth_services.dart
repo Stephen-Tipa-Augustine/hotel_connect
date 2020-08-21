@@ -4,11 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  User _createUserFromFirebaseUser(FirebaseUser user) =>
-      user != null ? User(uid: user.uid) : null;
+  UserModel _createUserFromFirebaseUser(FirebaseUser user) =>
+      user != null ? UserModel(uid: user.uid) : null;
 
   // On auth change
-  Stream<User> get user {
+  Stream<UserModel> get user {
     return _auth.onAuthStateChanged
         //.map((FirebaseUser user) => _createUserFromFirebaseUser(user))
         .map(_createUserFromFirebaseUser);
@@ -38,7 +38,13 @@ class AuthServices {
   }
 
   //Sign up with email and password
-  Future registerWithEmailAndPassword(String email, String password) async {
+  Future registerWithEmailAndPassword(
+      {String email,
+      String password,
+      String userName,
+      String firstName,
+      String lastName,
+      String contact}) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);

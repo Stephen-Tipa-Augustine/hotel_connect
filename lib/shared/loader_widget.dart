@@ -14,3 +14,17 @@ class LoaderWidget extends StatelessWidget {
     );
   }
 }
+
+class LoaderWidget1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.brown[100],
+      child: Center(
+        child: SpinKitChasingDots(
+          color: Colors.pink[500],
+        ),
+      ),
+    );
+  }
+}
