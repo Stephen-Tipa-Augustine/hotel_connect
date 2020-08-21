@@ -70,11 +70,7 @@ class _SignInPageState extends State<SignInPage> {
       obscureText: false,
       style: style,
       textAlign: TextAlign.center,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Enter Email",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+      decoration: textInputDecoration.copyWith(hintText: "Email or Username"),
     );
     final passwordField = TextFormField(
       validator: (value) => (value.isEmpty || value.length < 6)
@@ -84,24 +80,30 @@ class _SignInPageState extends State<SignInPage> {
       obscureText: true,
       style: style,
       textAlign: TextAlign.center,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Enter Password",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+      decoration: textInputDecoration.copyWith(hintText: "Enter Password"),
     );
     return loading
         ? LoaderWidget()
         : Scaffold(
             backgroundColor: Colors.brown[100],
             appBar: AppBar(
-              backgroundColor: Colors.brown[400],
+              backgroundColor: Colors.redAccent,
               elevation: 0.0,
               title: Text('Log In'),
             ),
             body: SingleChildScrollView(
               child: Center(
                 child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromRGBO(1, 89, 99, 1.0),
+                        Colors.redAccent[100]
+                      ],
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.topRight,
+                    ),
+                  ),
                   padding:
                       EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                   child: Form(
