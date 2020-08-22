@@ -16,13 +16,17 @@ class GetImageFromFirebase extends StatelessWidget {
 
   Future<Widget> _getImage(BuildContext context, String image) async {
     Image m;
-    await FireStorageService.loadFromStorage(context, image)
-        .then((downloadUrl) {
-      m = Image.network(
-        downloadUrl.toString(),
-        fit: BoxFit.scaleDown,
-      );
-    });
+    try {
+      await FireStorageService.loadFromStorage(context, image)
+          .then((downloadUrl) {
+        m = Image.network(
+          downloadUrl.toString(),
+          fit: BoxFit.scaleDown,
+        );
+      });
+    } catch (e) {
+      m = Image.asset('assets/images/no_image.jpg');
+    }
 
     return m;
   }

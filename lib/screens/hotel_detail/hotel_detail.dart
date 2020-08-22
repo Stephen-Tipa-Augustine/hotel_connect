@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_connect/models/hotel_list.dart';
 import 'package:hotel_connect/models/order_model.dart';
-import 'package:hotel_connect/screens/events/events.dart';
+import 'package:hotel_connect/screens/events/events_base.dart';
 import 'package:hotel_connect/screens/hotel_detail/about_hotel.dart';
 import 'package:hotel_connect/screens/ordering/ordering.dart';
 import 'package:hotel_connect/screens/payments/payment.dart';
