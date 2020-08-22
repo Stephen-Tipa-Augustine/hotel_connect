@@ -19,7 +19,7 @@ class _AboutHotelPageState extends State<AboutHotelPage> {
           location: '',
           overview: '',
           name: '',
-          logo: '',
+          logo: 'hotel_list/',
         );
     return Container(
       decoration: BoxDecoration(
@@ -38,13 +38,13 @@ class _AboutHotelPageState extends State<AboutHotelPage> {
                 crossAxisCount: 3, crossAxisSpacing: 4.0, mainAxisSpacing: 4.0),
             children: <Widget>[
               GetImageFromFirebase(
-                filePath: 'hotel_list/logo1.png',
+                filePath: hotelDetail.logo + 'image1.jpg',
               ),
               GetImageFromFirebase(
-                filePath: 'hotel_list/logo1.png',
+                filePath: hotelDetail.logo + 'image2.jpg',
               ),
               GetImageFromFirebase(
-                filePath: 'hotel_list/logo1.png',
+                filePath: hotelDetail.logo + 'image3.jpg',
               ),
             ],
           ),
