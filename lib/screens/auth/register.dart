@@ -48,12 +48,14 @@ class _RegisterState extends State<Register> {
                   setState(() {
                     loading = true;
                   });
-                  dynamic result = _authServices.registerWithEmailAndPassword(
+                  dynamic result =
+                      await _authServices.registerWithEmailAndPassword(
                     email: this.email,
                     userName: this.usrName,
                     firstName: this.firstName,
                     lastName: this.lastName,
                     contact: this.contact,
+                    password: pwd,
                   );
                   if (result == null) {
                     setState(() {

@@ -1,5 +1,6 @@
 import 'package:hotel_connect/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hotel_connect/services/database.dart';
 
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -14,17 +15,6 @@ class AuthServices {
         .map(_createUserFromFirebaseUser);
   }
 
-  // Signin anonymously
-  Future signInAnonym() async {
-    try {
-      AuthResult result = await _auth.signInAnonymously();
-      FirebaseUser user = result.user;
-      return _createUserFromFirebaseUser(user);
-    } catch (e) {
-      return null;
-    }
-  }
-
   //Sign in with email
   Future logInWithEmailAndPassword(String email, String password) async {
     try {
@@ -33,6 +23,7 @@ class AuthServices {
       FirebaseUser user = result.user;
       return _createUserFromFirebaseUser(user);
     } catch (e) {
+      print(e.toString());
       return null;
     }
   }
@@ -49,8 +40,16 @@ class AuthServices {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+      await DatabaseService(uid: user.uid).userProfile(
+        email: email,
+        userName: userName,
+        firstName: firstName,
+        lastName: lastName,
+        contact: contact,
+      );
       return _createUserFromFirebaseUser(user);
     } catch (e) {
+      print(e.toString());
       return null;
     }
   }
@@ -60,6 +59,7 @@ class AuthServices {
     try {
       return await _auth.signOut();
     } catch (e) {
+      print(e.toString());
       return null;
     }
   }
