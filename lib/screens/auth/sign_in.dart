@@ -34,8 +34,8 @@ class _SignInPageState extends State<SignInPage> {
             setState(() {
               loading = true;
             });
-            dynamic result =
-                _authServices.logInWithEmailAndPassword(this.email, this.pwd);
+            dynamic result = await _authServices.logInWithEmailAndPassword(
+                this.email, this.pwd);
             if (result == null) {
               setState(() {
                 loading = false;
